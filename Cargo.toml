@@ -1,0 +1,24 @@
+[package]
+name = "work-rs-sitemap-parser"
+version = "0.1.0"
+edition = "2024"
+authors = [ "cnb.aEGYWXNhAEA <h6hc265Daf0xVcGoG2k8uB+cnb.aEGYWXNhAEA@noreply.cnb.cool>" ]
+
+[package.metadata.release]
+release = false
+
+# https://github.com/rustwasm/wasm-pack/issues/1247
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+worker = { version="0.5.0", features=['http'] }
+worker-macros = { version="0.5.0", features=['http'] }
+console_error_panic_hook = { version = "0.1.1" }
+http = "1.1"
+axum  = { version = "0.7", default-features = false }
+tower-service = "0.3.2"
+wasm-bindgen-futures = "0.4"

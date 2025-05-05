@@ -1,0 +1,26 @@
+# .cnb.yml
+$:
+  vscode:
+    - runner:
+        cpus: 2
+      services:
+        - vscode
+        - docker
+      stages:
+        - name: echo
+          script: echo hello
+        - name: install llvm
+          script: apt update && apt install clang-19 llvm-19 lld-19 curl pkg-config libssl-dev -y
+        - name: rust install
+          script: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        - name: config /bin/c++
+          script: update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-19 100 && update-alternatives --auto c++
+        - name: config /bin/cc
+          script: update-alternatives --install /usr/bin/cc cc /usr/bin/clang-19 100 && update-alternatives --auto cc
+        - name: install rust-analyzer
+          script: code-server --install-extension rust-lang.rust-analyzer
+
+  
+
+
+        
